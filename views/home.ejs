@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        body{
+            background-color: rgb(54, 54, 54);
+            color: rgb(248, 246, 246);
+        }
+        strong{
+            justify-content: center;
+            display: flex;
+            font-size: 3rem;
+            color: #9797d3;
+        }
+
+        h1{
+            display: flex;
+            justify-content: center;
+        }
+
+        img{
+            margin-bottom: 40px;
+            margin-top: -100px;
+            margin-left: 300px;
+            vertical-align: middle;
+            max-width: 50%;
+            height: auto;
+        }
+
+        input{
+            padding: 10px;
+        }
+
+        button{
+            padding: 12px;
+            margin-left: 10px;
+            color: white;
+            background-color: rgb(7, 147, 228);
+            border: 0px;
+            border-radius: 5px;
+        }
+
+        .input-group_flex-nowrap{
+            display: flex;
+            justify-content: center;
+            padding: 5px;
+        }
+
+        span{
+            align-content: center;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1><strong>URL Shortener</strong></h1>
+    <div>
+        <img src="https://docrdsfx76ssb.cloudfront.net/static/1712086357/pages/wp-content/uploads/2022/07/link-management_mobile.png" alt="Mobile Hero" width="100%" height="auto">
+        <!-- <img src="https://docrdsfx76ssb.cloudfront.net/static/1712086357/pages/wp-content/uploads/2022/06/link-management_desktop@3x-1.png" alt="Desktop hero" width="100%" height="auto" class="hide"> -->
+    </div>
+    <div class="cell large-7">
+            <h1 class="header-l" data-testid="create_memorable_connections_with_our_powerful_url_shortener">Create memorable connections
+            <br> 
+            with our powerful URL shortener</h1> 
+            <h2>Spark instant connections with your audience using trimmed, trustworthy, and trackable links within the URL Connections Platform.</h2>     
+    </div>
+
+    <form method="POST" action="/url">
+        <div class="input-group_flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">Enter the Valid URL</span>
+            <input type="text" name="url" placeholder="https://example.com" aria-describedby="addon-wrapping">
+            <button type="submit">Generate</button>
+        </div>
+    </form>
+<!-- locals means jo apne backend banaya hai wo hai local jisme id hogi -->
+    <% if (locals.id) { %> 
+     <p>URL Generated: http://localhost:8001/url/<%= id %></p>
+    <% } %>
+
+    <div style="margin-top: 30px">
+        <% if (locals.urls) { %>
+        <table>
+          <thead>
+            <th>S. No</th>
+            <th>ShortID</th>
+            <th>Redirect</th>
+            <!-- <th>Clicks</th> -->
+          </thead>
+          <tbody>
+            <% urls.forEach((url, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= url.shortId %></td>
+              <td><%= url.redirectUrl %></td>
+              <!-- <td><%= url.visitHistory.length %></td> -->
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <% } %>
+      </div>
+</body>
+</html>
