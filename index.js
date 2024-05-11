@@ -8,10 +8,10 @@ const staticRoute = require('./routes/staticRouter');
 const userRoute = require('./routes/user');
 const cookieParser = require('cookie-parser');
 
+require('dotenv').config({path: './config.env'});
+
 const app=express();
 const port=process.env.PORT;
-
-require('dotenv').config({path: './config.env'});
 
 connectToMongoDB(process.env.MONGO_URL)
 .then(() => {
