@@ -13,7 +13,7 @@ require('dotenv').config({path: './config.env'});
 
 const port=process.env.PORT;
 
-connectToMongoDB(process.env.MONGO_URL)
+connectToMongoDB(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
 .then(() => {
     console.log("mongoDB is Connected");
 })
