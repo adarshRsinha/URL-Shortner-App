@@ -7,13 +7,13 @@ const urlRouter = require('./routes/url');
 const staticRoute = require('./routes/staticRouter');
 const userRoute = require('./routes/user');
 const cookieParser = require('cookie-parser');
+const app=express();
 
 require('dotenv').config({path: './config.env'});
 
-const app=express();
 const port=process.env.PORT;
 
-connectToMongoDB(process.env.MONGO_URL)
+connectToMongoDB(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
     console.log("mongoDB is Connected");
 })
